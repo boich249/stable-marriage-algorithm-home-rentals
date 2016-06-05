@@ -1,0 +1,130 @@
+CREATE TABLE users
+(username varchar(15),
+ password varchar(15),
+ userType ENUM('owner', 'tenant'),
+ fname varchar(15),
+ lname varchar(15),
+ email varchar(30),
+ phone char(13),
+ PRIMARY KEY (username))
+
+CREATE table tenant_profile 
+(username varchar(15),
+ gender ENUM('m', 'f'),
+ ilevel ENUM('high', 'mid', 'low'),
+ pets ENUM('yes', 'no'),
+ smoke ENUM('yes', 'no'),
+ nat ENUM('canada', 'international'),
+ specNat varchar(30) DEFAULT NULL,
+ pro ENUM('white', 'blue', 'unemployed', 'student'),
+ specPro varchar(30) DEFAULT NULL,
+ PRIMARY KEY (username),
+ FOREIGN KEY(username) REFERENCES users(username))
+
+CREATE table owner_selection
+(username varchar(30),
+ gender ENUM('m', 'f', 'non'),
+ ilevel ENUM('high', 'mid', 'low', 'non'),
+ pets ENUM('yes', 'no', 'non'),
+ smoke ENUM('yes', 'no', 'non'),
+ nat ENUM('canada', 'international'),
+ specNat varchar(30) DEFAULT NULL,
+ pro ENUM('white', 'blue', 'unemployed', 'student', 'non'),
+ specPro varchar(30) DEFAULT NULL,
+ PRIMARY KEY (username),
+ FOREIGN KEY(username) REFERENCES users(username))
+ 
+CREATE TABLE `properties` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) NOT NULL,
+  `adress` varchar(30) DEFAULT NULL,
+  `city` varchar(30) DEFAULT 'Montreal',
+  `postal` char(6) DEFAULT NULL,
+  `sector` ENUM('center', 'east', 'west', 'north', 'laval') DEFAULT 'center',
+  `type` varchar(5) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `available` date DEFAULT NULL,
+  `area` double DEFAULT NULL,
+  `total_rooms` int(11) DEFAULT NULL,
+  `bed_rooms` int(11) DEFAULT NULL,
+  `bath_rooms` int(11) DEFAULT NULL,
+  `airc` tinyint(1) DEFAULT FALSE,
+  `park` tinyint(1) DEFAULT FALSE,
+  `yard` tinyint(1) DEFAULT FALSE,
+  `balc` tinyint(1) DEFAULT FALSE,
+  `tran` tinyint(1) DEFAULT FALSE,
+  `pool` tinyint(1) DEFAULT FALSE,
+  `htub` tinyint(1) DEFAULT FALSE,
+  `wifi` tinyint(1) DEFAULT FALSE,
+  `wash` tinyint(1) DEFAULT FALSE,
+  `elev` tinyint(1) DEFAULT FALSE,
+  `other` blob DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (username) REFERENCES users(`username`)
+)
+ 
+CREATE TABLE `rental_preferences` (
+  `username` varchar(30) NOT NULL,
+  `city` varchar(30) DEFAULT 'Montreal',
+  `sector` ENUM('center', 'east', 'west', 'north', 'laval') DEFAULT 'center',
+  `type` varchar(5) DEFAULT NULL,
+  `minPrice` double DEFAULT NULL,
+  `maxPrice` double DEFAULT NULL,
+  `available` date DEFAULT NULL,
+  `area` double DEFAULT NULL,
+  `total_rooms` int(11) DEFAULT NULL,
+  `bed_rooms` int(11) DEFAULT NULL,
+  `bath_rooms` int(11) DEFAULT NULL,
+  `airc` tinyint(1) DEFAULT FALSE,
+  `park` tinyint(1) DEFAULT FALSE,
+  `yard` tinyint(1) DEFAULT FALSE,
+  `balc` tinyint(1) DEFAULT FALSE,
+  `tran` tinyint(1) DEFAULT FALSE,
+  `pool` tinyint(1) DEFAULT FALSE,
+  `htub` tinyint(1) DEFAULT FALSE,
+  `wifi` tinyint(1) DEFAULT FALSE,
+  `wash` tinyint(1) DEFAULT FALSE,
+  `elev` tinyint(1) DEFAULT FALSE,
+  `other` blob DEFAULT NULL,
+  PRIMARY KEY (`username`),
+  FOREIGN KEY (username) REFERENCES users(`username`)
+)
+ 
+CREATE TABLE property_rank
+(username varchar(30),
+ property1 int,
+ property2 int,
+ property3 int,
+ property4 int,
+ property5 int,
+ PRIMARY KEY(username),
+ FOREIGN KEY(username) REFERENCES users(username),
+ FOREIGN KEY(property1) REFERENCES properties(id),
+ FOREIGN KEY(property2) REFERENCES properties(id),
+ FOREIGN KEY(property3) REFERENCES properties(id),
+ FOREIGN KEY(property4) REFERENCES properties(id),
+ FOREIGN KEY(property5) REFERENCES properties(id)
+ )
+
+CREATE TABLE tenant_rank
+(username varchar(30),
+ tenant1 varchar(30),
+ tenant2 varchar(30),
+ tenant3 varchar(30),
+ tenant4 varchar(30),
+ tenant5 varchar(30),
+ PRIMARY KEY(username),
+ FOREIGN KEY(username) REFERENCES users(username),
+ FOREIGN KEY(tenant1) REFERENCES users(username),
+ FOREIGN KEY(tenant2) REFERENCES users(username),
+ FOREIGN KEY(tenant3) REFERENCES users(username),
+ FOREIGN KEY(tenant4) REFERENCES users(username),
+ FOREIGN KEY(tenant5) REFERENCES users(username)
+ )
+
+CREATE TABLE matches
+(owner varchar(30),
+tenant varchar(30),
+PRIMARY KEY(owner),
+FOREIGN KEY(owner) REFERENCES users(username),
+FOREIGN KEY(tenant) REFERENCES users(username))

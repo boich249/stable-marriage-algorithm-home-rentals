@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Rental Preferences</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../css/jumbotron.css" rel="stylesheet">
+        <link href="../css/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="jumbotron">
+          <div class="container" id="puzzle">
+            <h1>HoMeMatcH</h1>
+            <p>Matching the perfect tenant with the perfect home!</p>
+            <p></p>
+          </div>
+        </div>
+        <div class="container" id="h1div">
+            <div class="row">
+                <h1 class="col-lg-12">What Are Your Rental Preferences?</h1>
+            </div>
+            <br />
+            <form action="../php/rental_preference_data.php" method="POST" >
+                <div class="row">
+                    <label for="sector">Sector: </label>
+                    <select name="sector" id="sector">
+                        <option value="center">Center</option>
+                        <option value ="east">East</option>
+                        <option value ="west">West</option>
+                        <option value ="north">North</option>
+                        <option value ="east">Laval</option>
+                    </select><br />
+                </div>
+                <div class="row">
+                    <label for="type">Type: </label>
+                    <select name="type" id="type">
+                        <option value="studio">Studio</option>
+                        <option value ="loft">Loft</option>
+                        <option value ="2">2 Bedroom</option>
+                        <option value ="3">3 Bedroom</option>
+                        <option value ="4">4 Bedroom and more</option>
+                    </select><br/>
+                </div>
+                <div class="row">
+                    <label for="furnish">Furnishing: </label>
+                    <select name="furnish" id="furnish">
+                        <option value="full">Fully Furnished</option>
+                        <option value ="semi">Semi Furnished</option>
+                        <option value ="un">Unfurnished</option>
+                    </select>
+                </div>
+                <br />
+                <div class="col-lg-12"></div>
+                
+                <div class="row">
+                    <label>Price: </label><br />
+                    <div class="col-lg-6">
+                       <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="checkbox"  name="minPrice" onclick="enableField('minPrice', this)" checked />
+                                    <label for="minPrice">Above  $</label>
+                                </span>
+                                <input type="text" class="form-control" name="minPrice" id="minPrice"  onblur="minBelowMax('minPrice', 'maxPrice')" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                       <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="checkbox" name="maxPrice"  onclick="enableField('maxPrice', this)" checked />
+                                    <label for="maxPrice">Below  $</label>
+                                </span>
+                                <input type="text" class="form-control" name="maxPrice" id="maxPrice" onblur="minBelowMax('minPrice', 'maxPrice')" required/>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                <label>Date Available: </label><br />
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <label for="avail">Available no later than </label>
+                            </span>
+                            <input type="date" class="form-control" name="available" id="avail" required/>
+                        </div>
+                    </div>
+                </div></div><div class="col-lg-6"></div>
+                <br />
+                <br />
+                <div class="row">
+                <div class="form-group">
+                    <label for="area">Living area: </label><br />
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <input type="checkbox" name="minArea" onclick="enableField('area', this)" checked/>
+                                <label for="area">At least</label>
+                            </span>
+                            <input type="text" class="form-control" name="area" id="area" required>
+                            <span class="input-group-addon">
+                                <label for="area">square feet</label>
+                            </span>
+                        </div>
+                    </div>
+                </div></div>
+                <br />
+                <br />
+                <div class="row">
+                    <!--<label for="tRooms">Total Rooms: </label>-->
+                    <div class="form-group">                       
+                        <div class="col-lg-4">
+                            <label for="tRooms">Total Rooms: </label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="checkbox" name="minRooms" onclick="enableField('tRooms', this)" checked/>
+                                    <label for="tRooms">At least</label>
+                                </span>
+                                <input type="text" class="form-control" name="total_rooms" id="tRooms" size="1" required/><!--finish-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--<label for="bedRooms">Bed Rooms: </label>-->
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="bedRooms">Bed Rooms: </label>
+                            <div class="input-group">    
+                                <span class="input-group-addon">
+                                    <input type="checkbox" name="minRooms" onclick="enableField('bedRooms', this)" checked/>
+                                    <label for="bedRooms">At least</label>
+                                </span>
+                                <input type="text" class="form-control" name="bed_rooms" id="bedRooms" size="1" required/><!--finish-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--<label for="bathRooms">Bath Rooms: </label>-->
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="bathRooms">Bath Rooms: </label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="checkbox" name="minRooms" onclick="enableField('bathRooms', this)" checked/>
+                                    <label for="bathRooms">At least</label>
+                                </span> 
+                                <input type="text" class="form-control" name="bath_rooms" id="bathRooms" size="1" required/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p><strong>Other Requests</strong></p>
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="airc" />Air Conditioning
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="park" />Parking
+                        </div>
+                        <br />
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="yard" />Yard
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="balc" />Balcony
+                        </div>
+                        <br />
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="tran" />Near Public Transit
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="pool" />Pool
+                        </div>
+                        <br />
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="htub" />Hot Tub
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="wifi" />Free Wifi
+                        </div>
+                        <br />
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="wash" />Washer/Dryer
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="checkbox" value="1" name="elev" />Elevator
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="addInfo">Additional Information</label><br />
+                    <textarea name="addInfo" class="form-control" id="addInfo" placeholder="Enter additional information here" rows="6" cols="50" maxlength='300' ></textarea>
+                </div>
+                <br />
+                <div class="row">
+                    <input type="submit" class="btn btn-default" name="submit" id="submit"/>
+                    <input type="reset" class="btn btn-default" name="reset" id="reset"/>
+                </div>
+                <br />
+            </form>
+            <br/>
+            <hr>
+            <footer>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p><strong>Contact Us</strong></p>
+                      <ul>
+                          <li><a href ="mailto:homematch@homematch.com">Email</a></li>
+                          <li>Phone 1(888)888-8888</li>
+                          <li><a href="http://www.homematch.com">www.homematch.com</a></li>
+                          <li>450 DeMaisonneuve</li>
+                          <li>Montreal, QC</li>
+                      </ul>
+                    </div>
+                    <div class="col-lg-4">
+                      <p><strong>Site Map</strong></p>
+                      <ul>
+                          <li><a href ="../index.php">Home</a></li>
+                          <li><a href ="signup.html">Sign Up</a></li>
+                          <li><a href="listProperty.html">List a Property</a></li>
+                          <li><a href="tenantSelection.html">Tenant Selection</a></li>
+                          <li><a href="tenantProfile.html">Tenant Profile</a></li>
+                          <li><a href="rentalPreferences.html">Rental Preferences</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-lg-4">
+                       <p>&copy; HoMeMatcH</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script type="text/javascript" src="../js/formVal.js"></script>
+    </body>
+</html>

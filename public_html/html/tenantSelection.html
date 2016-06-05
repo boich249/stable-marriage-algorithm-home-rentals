@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Tenant Selection Criteria</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../css/jumbotron.css" rel="stylesheet">
+        <link href="../css/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="jumbotron">
+          <div class="container" id="puzzle">
+            <h1>HoMeMatcH</h1>
+            <p>Matching the perfect tenant with the perfect home!</p>
+            <p></p>
+          </div>
+        </div>
+        <div class = "container">
+            <h1>Let's find your ideal tenant</h1>
+            <br />
+            <form action="../php/tenant_selection_data.php" method="POST">
+                <div>
+                    <label>Gender</label><br />
+                    <input type="radio" name="gender" value="m" />Male
+                    <input type="radio" name="gender" value="f" />Female
+                    <input type="radio" name="gender" value="non" checked />No Preference
+                </div>
+                <br />
+                <div>
+                    <label>Income Level</label><br />
+                    <input type="radio" name="ilevel" value="high" />High
+                    <input type="radio" name="ilevel" value="mid" />Mid
+                    <input type="radio" name="ilevel" value="low" />Low
+                    <input type="radio" name="ilevel" value="non" checked />No Preference
+                </div>
+                <br/>
+                <div>
+                    <label>Pet Owners</label><br />
+                    <input type="radio" name="pets" value="yes" />Yes
+                    <input type="radio" name="pets" value="no" />No
+                    <input type="radio" name="pets" value="non" checked />No Preference
+                </div>
+                <br/>
+                <div>
+                    <label>Smoking</label><br />
+                    <input type="radio" name="smoke" value="yes" />Yes
+                    <input type="radio" name="smoke" value="no" />No
+                    <input type="radio" name="smoke" value="non" checked />No Preference
+                </div>
+                <br/>
+                <div>
+                    <label>Nationality</label><br />
+                    <input type="radio" name="nat" value="canada" onchange="enableField('specNat', false)"/>Canada
+                    <input type="radio" name="nat" value="international"  onchange="enableField('specNat', this)"/>International
+                    
+                    <input type="radio" name="nat" value="non" onchange="enableField('specNat', false)" checked/>No Preference
+                    <br />
+                    <label for="specNat">Internationally From:</label>
+                    <input type="text" class="form-control" name="specNat" id="specNat" disabled/>  
+                </div>
+                <br/>
+                <div>
+                    <label>Profession</label><br />
+                    <input type="radio" name="pro" value="white" onchange="enableField('specPro', this)"/>White Collar
+                    <input type="radio" name="pro" value="blue" onchange="enableField('specPro', this)"/>Blue Collar
+                    <input type="radio" name="pro" value="unemployed" onchange="enableField('specPro', pro)"/>Unemployed
+                    <input type="radio" name="pro" value="student" onchange="enableField('specPro', pro)"/>Student
+                    <input type="radio" name="pro" value="non" onchange="enableField('specPro', pro)" checked/>No Preference<br /> 
+                    <label for="specNat">Specific occupation: </label><input type="text" class="form-control" name ="specPro" id="specPro" disabled/>
+                </div>
+                <br/>
+                <div>
+                    <input type="submit" class="btn btn-default" name="submit" id="submit"/>
+                    <input type="reset" class="btn btn-default" name="reset" id="reset"/>
+                </div>
+            </form>
+            <br/>
+            <hr>
+            <footer>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p><strong>Contact Us</strong></p>
+                      <ul>
+                          <li><a href ="mailto:homematch@homematch.com">Email</a></li>
+                          <li>Phone 1(888)888-8888</li>
+                          <li><a href="http://www.homematch.com">www.homematch.com</a></li>
+                          <li>450 DeMaisonneuve</li>
+                          <li>Montreal, QC</li>
+                      </ul>
+                    </div>
+                    <div class="col-lg-4">
+                      <p><strong>Site Map</strong></p>
+                      <ul>
+                          <li><a href ="../index.php">Home</a></li>
+                          <li><a href ="signup.html">Sign Up</a></li>
+                          <li><a href="listProperty.html">List a Property</a></li>
+                          <li><a href="tenantSelection.html">Tenant Selection</a></li>
+                          <li><a href="tenantProfile.html">Tenant Profile</a></li>
+                          <li><a href="rentalPreferences.html">Rental Preferences</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-lg-4">
+                       <p>&copy; HoMeMatcH</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script type="text/javascript" src="../js/formVal.js"></script>
+    </body>
+</html>

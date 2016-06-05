@@ -1,0 +1,6 @@
+All links and redirects (header("location:...") etc.), are to :
+http://localhost/SOEN287_assignment4/public_html/(folder then file)
+For example:
+http://localhost/SOEN287_assignment4/public_html/php/new_user.php
+or
+http://localhost/SOEN287_assignment4/public_html/css/main.css
